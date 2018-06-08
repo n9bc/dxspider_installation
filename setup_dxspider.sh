@@ -1,10 +1,11 @@
-[root@localhost ~]# more my_script.sh
 #!/bin/bash
+# Script for Installation and configuration DxSpider Cluster  
+# Create By Yiannis Panagou, SV5FRI
+# http://www.sv5fri.eu
+# E-mail:sv5fri@gmail.com
+# Version 0.5 - Last Modify 08/06/2018
 #
-#
-#
-#
-#
+#==============================================
 # Function Check Distribution and Version
 check_distro() {
 
@@ -34,7 +35,6 @@ check_distro() {
 #
 install_epel_7() {
 #Install epel repository
-#
 ## RHEL/CentOS 7 64-Bit ##
 # wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 # rpm -ivh epel-release-latest-7.noarch.rpm
@@ -43,6 +43,7 @@ yum check-update
 # Install the additional package repository EPEL
 yum -y install epel-release
 }
+#
 #
 #install_epel_6_32b() {
 ## RHEL/CentOS 6 32-Bit ##
@@ -57,7 +58,7 @@ yum -y install epel-release
 # rpm -ivh epel-release-6-8.noarch.rpm
 # rm epel-release-6-8.noarch.rpm
 #}
-
+#
 # Install extra packages for CentOS 7
 install_package_CentOS_7() {
 # Update the system
@@ -65,7 +66,7 @@ yum check-update
 # Install extra packages
 yum -y install perl-TimeDate perl-Time-HiRes perl-Digest-SHA1 perl-Curses perl-Net-Telnet git gcc make perl-Data-Dumper perl-DB_File
 }
-
+#
 install_package_debian() {
 # Update the system
 apt-get update
@@ -84,7 +85,7 @@ else
    adduser -m sysop
    fi
 }
-
+#
 check_if_exist_group() {
 egrep -i "^spider" /etc/group;
 if [ $? -eq 0 ]; then
@@ -94,14 +95,12 @@ else
    groupadd -g 251 spider
 fi
 }
-
+#
 create_user_group() {
 # Greate user
 check_if_exist_user
-
 # Create group
 check_if_exist_group
-
 # Add the users to the spider group
 usermod -aG spider sysop
 usermod -aG spider root
@@ -174,12 +173,12 @@ config_app(){
 su - sysop -c "chown -R sysop.spider spider"
 su - sysop -c "find ./ -type d -exec chmod 2775 {} \;"
 su - sysop -c "find ./ -type f -exec chmod 775 {} \;"
-#
 su - sysop -c "mkdir -p /spider/local"
 su - sysop -c "mkdir -p /spider/local_cmd"
 su - sysop -c "cp /spider/perl/DXVars.pm.issue /spider/local/DXVars.pm"
 su - sysop -c "cp /spider/perl/Listeners.pm /spider/local/Listeners.pm"
 su - sysop -c "sed -i '17s/#//' /spider/local/Listeners.pm"
+#
 insert_cluster_call
 insert_call
 insert_name
@@ -187,7 +186,7 @@ insert_email
 insert_locator
 insert_qth
 #
-echo -n "Now create basic user file\n"
+#echo -n "Now create basic user file"
 su - sysop -c "/spider/perl/create_sysop.pl"
 echo -n " "
 echo -n " "
@@ -200,5 +199,6 @@ main() {
         install_app
         config_app
 }
-
+# Execute Script Main
 main
+exit 0
