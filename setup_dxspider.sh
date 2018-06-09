@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # http://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 0.5 - Last Modify 08/06/2018
+# Version 0.6 - Last Modify 09/06/2018
 #
 #==============================================
 # Function Check Distribution and Version
@@ -28,6 +28,10 @@ check_distro() {
         if [ "${distroname}" == "CentOS Linux 7 (Core)" ]; then
                 install_epel_7
                 install_package_CentOS_7
+        elif [ "${distroname}" == "Raspbian GNU/Linux 7 (wheezy)" ]; then
+				install_package_debian
+        elif [ "${distroname}" == "Raspbian GNU/Linux 8 (jessie)" ]; then
+				install_package_debian
         else
         exit 1
         fi
