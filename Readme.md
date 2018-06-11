@@ -5,7 +5,7 @@ Installation
 1. Download script.
 2. Must be run as root user.
 3. Change permission
-    chmod + x setup_dxspider.sh
+    chmod +x setup_dxspider.sh
 4. Run script and follow the messages.
 
 
