@@ -28,11 +28,15 @@ check_distro() {
         if [ "${distroname}" == "CentOS Linux 7 (Core)" ]; then
                 install_epel_7
                 install_package_CentOS_7
-        elif [ "${distroname}" == "Raspbian GNU/Linux 7 (wheezy)" ]; then
+		elif [ "${distroname}" == "Raspbian GNU/Linux 7 (wheezy)" ]; then
 				install_package_debian
         elif [ "${distroname}" == "Raspbian GNU/Linux 8 (jessie)" ]; then
 				install_package_debian
-        else
+		elif [ "${distroname}" == "Raspbian GNU/Linux 9 (stretch)" ]; then
+				install_package_debian
+		elif [ "${distroname}" == "Debian GNU/Linux 9 (stretch)" ]; then
+				install_package_debian
+		else
         exit 1
         fi
 }
@@ -68,14 +72,14 @@ install_package_CentOS_7() {
 # Update the system
 #yum check-update
 # Install extra packages
-yum -y install perl-TimeDate perl-Time-HiRes perl-Digest-SHA1 perl-Curses perl-Net-Telnet git gcc make perl-Data-Dumper perl-DB_File
+yum -y install perl-TimeDate perl-Time-HiRes perl-Digest-SHA1 perl-Curses perl-Net-Telnet git gcc make perl-Data-Dumper perl-DB_File git
 }
 #
 install_package_debian() {
 # Update the system
 apt-get update
 # Install extra packages
-apt-get -y install libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-dumper-simple-perl
+apt-get -y install libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-dumper-simple-perl git
 }
 #
 # Create User and group - Create Directory and Symbolic Link
@@ -86,7 +90,8 @@ if [ $? -eq 0 ]; then
    echo "User Exists no created"
 else
    echo "User does not exist -- proceed to create user"
-   useradd -m sysop
+   adduser -m sysop
+   echo "Please insert password for user sysop"
    echo " Please enter password for sysop user"
    passwd sysop
    fi
