@@ -3,9 +3,18 @@
 # Create By Yiannis Panagou, SV5FRI
 # http://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 0.8 - Last Modify 11/06/2018
+# Version 0.9 - Last Modify 11/06/2018
 #
 #==============================================
+#
+# Check the script is being run by root user
+check_run_user() {
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+}
+
 # Function Check Distribution and Version
 check_distro() {
 
@@ -443,6 +452,8 @@ echo -e "Now login as sysop user.\nStart application and check if everything is 
 }
 
 main() {
+        check_run_user
+        echo -e " "
         check_distro
         echo -e " "
         create_user_group
