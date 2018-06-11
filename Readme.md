@@ -15,6 +15,7 @@ Script has been tested on following Operating Systems
 2. Raspbian 7 (Wheezy)
 3. Raspbian 8 (Jessie)
 4. Raspbian 9 (stretch)
+5. Debian GNU/Linux 9 (stretch)
     
     
 Todo
