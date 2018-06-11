@@ -99,7 +99,7 @@ if [ $? -eq 0 ]; then
    echo "User Exists no created"
 else
    echo "User does not exist -- proceed to create user sysop"
-   useradd -m -s/bin/bash sysop
+   useradd -m -s /bin/bash sysop
    echo "Please enter password for sysop user"
    passwd sysop
    fi
