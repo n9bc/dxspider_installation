@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # http://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 0.6 - Last Modify 09/06/2018
+# Version 0.7 - Last Modify 11/06/2018
 #
 #==============================================
 # Function Check Distribution and Version
@@ -66,7 +66,7 @@ yum -y install epel-release
 # Install extra packages for CentOS 7
 install_package_CentOS_7() {
 # Update the system
-yum check-update
+#yum check-update
 # Install extra packages
 yum -y install perl-TimeDate perl-Time-HiRes perl-Digest-SHA1 perl-Curses perl-Net-Telnet git gcc make perl-Data-Dumper perl-DB_File
 }
@@ -86,7 +86,9 @@ if [ $? -eq 0 ]; then
    echo "User Exists no created"
 else
    echo "User does not exist -- proceed to create user"
-   adduser -m sysop
+   useradd -m sysop
+   echo " Please enter password for sysop user"
+   passwd sysop
    fi
 }
 #
