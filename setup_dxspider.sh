@@ -174,10 +174,11 @@ install_app() {
 # Create symbolic links
 ln -s /home/sysop/spider /spider
 # Download Application dxspider with git
-echo -e " "
 echo -e "Now starting to download application DxSpider"
-su - sysop -c "git clone git://scm.dxcluster.org/scm/spider"
 echo -e " "
+su - sysop -c "git clone git://scm.dxcluster.org/scm/spider"
+
+echo -e " "    
 }
 
 config_app(){
