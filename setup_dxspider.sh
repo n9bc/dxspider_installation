@@ -90,7 +90,7 @@ if [ $? -eq 0 ]; then
    echo "User Exists no created"
 else
    echo "User does not exist -- proceed to create user"
-   adduser -m sysop
+   useradd -m sysop
    echo "Please insert password for user sysop"
    echo " Please enter password for sysop user"
    passwd sysop
