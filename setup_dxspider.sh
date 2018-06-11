@@ -20,6 +20,7 @@ check_distro() {
         fi
 
         echo "${distroname}"
+        echo -e " "
 
         if [ "${distroname}" == "CentOS Linux 7 (Core)" ]; then
                 install_epel_7
@@ -109,14 +110,18 @@ create_user_group() {
 
 # Greate user
 check_if_exist_user
+echo -e " "
 
 # Create group
 check_if_exist_group
+echo -e " "
 
 # Add the users to the spider group
 echo -e "Add the users (sysop and root) to the spider group"
 usermod -aG spider sysop
 usermod -aG spider root
+
+echo -e " "    
 }
 
 # Enter CallSign for cluster
@@ -148,7 +153,7 @@ insert_name() {
 
 # Enter your E-mail
 insert_email() {
- echo -n "Please enter your E-mail Address: "
+ echo -n "Please enter your E-mail Address(syntax like your\@email.com): "
  chr="\""
  read EMAIL
  echo ${EMAIL}
@@ -177,13 +182,17 @@ install_app() {
 # Create symbolic links
 ln -s /home/sysop/spider /spider
 # Download Application dxspider with git
+echo -e " "
 echo -e "Now starting to download application DxSpider"
 su - sysop -c "git clone git://scm.dxcluster.org/scm/spider"
+echo -e " "
 }
 
 config_app(){
 # Fix up permissions ( AS THE SYSOP USER )
 echo "Fix up permissions"
+echo -e " "
+echo -e "Please use capital letters"
 echo -e " "
 su - sysop -c "cd /home/sysop"
 su - sysop -c "chown -R sysop.spider spider"
@@ -206,7 +215,7 @@ echo -e "Now create basic user file"
 su - sysop -c "/spider/perl/create_sysop.pl"
 echo -e " "
 echo -e "Installation has been finished."
-echo -e "Now you can start application and check if everything is ok with follow command /spider/perl/cluster.pl"
+echo -e "Now login as sysop user.\nStart application and check if everything is ok with follow command /spider/perl/cluster.pl"
 }
 
 main() {
@@ -215,7 +224,6 @@ main() {
         install_app
         echo -e "Now starting make dxspider configuration"
         echo -e "Config files location are /spider/local/DXVars.pm"
-        echo -e "Please use capital letters"
         config_app
 }
 # Execute Script Main
