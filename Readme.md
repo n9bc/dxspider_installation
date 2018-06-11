@@ -9,7 +9,7 @@ Installation
 4. Run script and follow the messages.
 
 
-Script has been tested on following Operating Systems
+Script has been tested on the following Operating Systems (Linux Distributions)
 
 1. CentOS 7
 2. Raspbian 7 (Wheezy)
@@ -17,6 +17,3 @@ Script has been tested on following Operating Systems
 4. Raspbian 9 (stretch)
 5. Debian GNU/Linux 9 (stretch)
     
-    
-Todo
-
