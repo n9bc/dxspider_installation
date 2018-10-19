@@ -27,10 +27,13 @@ check_distro() {
         else
                 distroname="$(uname -s) $(uname -r)"
         fi
-
-        echo "${distroname}"
+        
         echo -e " "
-
+        echo -e "==============================================================="
+        echo "Your distribution is ${distroname}"
+        echo -e "=============================================================== "
+        echo -e " "
+        
         if [ "${distroname}" == "CentOS Linux 7 (Core)" ]; then
                 install_epel_7
                 install_package_CentOS_7
@@ -53,9 +56,9 @@ install_epel_7() {
 # wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 # rpm -ivh epel-release-latest-7.noarch.rpm
 # Update the system
-yum check-update
+    yum check-update
 # Install the additional package repository EPEL
-yum -y install epel-release
+    yum -y install epel-release
 }
 
 # Install extra packages for CentOS 7
@@ -63,15 +66,15 @@ install_package_CentOS_7() {
 # Update the system
 #yum check-update
 # Install extra packages
-yum -y install perl-TimeDate perl-Time-HiRes perl-Digest-SHA1 perl-Curses perl-Net-Telnet git gcc make perl-Data-Dumper perl-DB_File git
+    yum -y install perl-TimeDate perl-Time-HiRes perl-Digest-SHA1 perl-Curses perl-Net-Telnet git gcc make perl-Data-Dumper perl-DB_File git
 }
 
 
 install_package_debian() {
 # Update the system
-apt-get update
+    apt-get update
 # Install extra packages
-apt-get -y install libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-dumper-simple-perl git
+    apt-get -y install libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-dumper-simple-perl git
 }
 
 
