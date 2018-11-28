@@ -33,23 +33,24 @@ check_distro() {
         echo "Your distribution is ${distroname}"
         echo -e "=============================================================== "
         echo -e " "
+        echo -e " "
         
         if [ "${distroname}" == "CentOS Linux 7 (Core)" ]; then
                 install_epel_7
                 install_package_CentOS_7
-		elif [ "${distroname}" == "Raspbian GNU/Linux 7 (wheezy)" ]; then
+            elif [ "${distroname}" == "Raspbian GNU/Linux 8 (jessie)" ]; then
+		    		install_package_debian
+		    elif [ "${distroname}" == "Raspbian GNU/Linux 9 (stretch)" ]; then
 				install_package_debian
-        elif [ "${distroname}" == "Raspbian GNU/Linux 8 (jessie)" ]; then
-				install_package_debian
-		elif [ "${distroname}" == "Raspbian GNU/Linux 9 (stretch)" ]; then
-				install_package_debian
-		elif [ "${distroname}" == "Debian GNU/Linux 9 (stretch)" ]; then
+		    elif [ "${distroname}" == "Debian GNU/Linux 9 (stretch)" ]; then
 				install_package_debian
 		else
-        exit 1
+            exit 1
         fi
 }
 
+## CentOS 7.x
+#
 install_epel_7() {
 #Install epel repository
 ## RHEL/CentOS 7 64-Bit ##
@@ -61,7 +62,7 @@ install_epel_7() {
     yum -y install epel-release
 }
 
-# Install extra packages for CentOS 7
+# Install extra packages for CentOS 7.x
 install_package_CentOS_7() {
 # Update the system
 #yum check-update
@@ -69,7 +70,8 @@ install_package_CentOS_7() {
     yum -y install perl-TimeDate perl-Time-HiRes perl-Digest-SHA1 perl-Curses perl-Net-Telnet git gcc make perl-Data-Dumper perl-DB_File git
 }
 
-
+## Deban & raspbian
+#
 install_package_debian() {
 # Update the system
     apt-get update
@@ -81,23 +83,24 @@ install_package_debian() {
 # Create User and group - Create Directory and Symbolic Link
 check_if_exist_user() {
 egrep -i "^sysop:" /etc/passwd;
-if [ $? -eq 0 ]; then
-   echo "User Exists no created"
-else
-   echo "User does not exist -- proceed to create user sysop"
-   useradd -m -s /bin/bash sysop
-   echo "Please enter password for sysop user"
-   passwd sysop
+    if [ $? -eq 0 ]; then
+        echo "User Exists no created"
+    else
+        echo "User does not exist -- proceed to create user sysop"
+        echo -e " "
+        useradd -m -s /bin/bash sysop
+        echo "Please enter password for sysop user"
+        passwd sysop
    fi
 }
 
 check_if_exist_group() {
 egrep -i "^spider" /etc/group;
-if [ $? -eq 0 ]; then
-   echo "Group Exists"
-else
-   echo "Group does not exist -- proceed to create spider group"
-   groupadd -g 251 spider
+    if [ $? -eq 0 ]; then
+        echo "Group Exists"
+    else
+        echo "Group does not exist -- proceed to create spider group"
+        groupadd -g 251 spider
 fi
 }
 
@@ -106,17 +109,21 @@ create_user_group() {
 # Greate user
 check_if_exist_user
 echo -e " "
+echo -e " "
 
 # Create group
 check_if_exist_group
 echo -e " "
+echo -e " "
 
 # Add the users to the spider group
 echo -e "Add the users (sysop and root) to the spider group"
+echo -e " "
 usermod -aG spider sysop
 usermod -aG spider root
 
-echo -e " "    
+echo -e " "
+echo -e " "
 }
 
 # Enter CallSign for cluster
@@ -226,6 +233,8 @@ main() {
         echo -e "Config files location are /spider/local/DXVars.pm"
         config_app
 }
-# Execute Script Main
+# Call Script Main
+#
 main
+
 exit 0
