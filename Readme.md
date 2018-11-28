@@ -21,7 +21,6 @@ Installation Steps
 Script has been tested on the following Operating Systems (Linux Distributions)
 
 1. CentOS 7
-2. Raspbian 7 (Wheezy)
-3. Raspbian 8 (Jessie)
-4. Raspbian 9 (stretch)
-5. Debian GNU/Linux 9 (stretch)
+2. Raspbian 8 (Jessie)
+3. Raspbian 9 (stretch)
+4. Debian GNU/Linux 9 (stretch)
