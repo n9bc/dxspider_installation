@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # http://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.0 - Last Modify 28/11/2018
+# Version 1.1 - Last Modify 28/02/2019
 #
 #==============================================
 #
@@ -34,6 +34,8 @@ check_distro() {
         echo -e "=============================================================== "
         echo -e " "
         echo -e " "
+        
+        read -n 1 -s -r -p "Press any key to continue"
         
         if [ "${distroname}" == "CentOS Linux 7 (Core)" ]; then
                 install_epel_7
