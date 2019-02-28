@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # http://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.1 - Last Modify 28/02/2019
+# Version 1.2 - Last Modify 28/02/2019
 #
 #==============================================
 #
@@ -30,7 +30,7 @@ check_distro() {
         
         echo -e " "
         echo -e "==============================================================="
-        echo "Your distribution is ${distroname}"
+        echo -e "      Your distribution is ${distroname}"
         echo -e "=============================================================== "
         echo -e " "
         echo -e " "
@@ -223,6 +223,40 @@ echo -e "Installation has been finished."
 echo -e "Now login as sysop user.\nStart application and check if everything is ok with follow command /spider/perl/cluster.pl"
 }
 
+enable_service() {
+echo -e " "
+echo -e "Now make configuratio for systemd service"
+echo -e " "
+# systemd script from spider directory to /etc/systemd/system/
+#
+touch /etc/systemd/system/dxspider.service
+#
+cat >> /etc/systemd/system/dxspider.service  <<EOL
+[Unit]
+Description= Dxspider DXCluster service
+After=network.target
+
+[Service]
+Type=simple
+User=sysop
+Group=sysop
+ExecStart= /usr/bin/perl -w /spider/perl/cluster.pl
+# Comment out line below for logging everything to /var/log/messages
+StandardOutput=null
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOL
+
+echo -e " "
+
+#
+#set up to start on boot
+systemctl enable dxspider
+}
+
+
 main() {
         check_run_user
         echo -e " "
@@ -234,6 +268,9 @@ main() {
         echo -e "Now starting make dxspider configuration"
         echo -e "Config files location are /spider/local/DXVars.pm"
         config_app
+        echo -e " "
+        enable_service
+        echo -e " "
 }
 # Call Script Main
 #
