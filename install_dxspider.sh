@@ -182,7 +182,7 @@ insert_qth() {
  su - sysop -c "sed -i 's/myqth =.*/myqth = ${chr}${MYQTH}${chr};/' /spider/local/DXVars.pm"
 }
 
-install_app() {
+install_spider() {
 # Create symbolic links
 ln -s /home/sysop/spider /spider
 # Download Application dxspider with git
@@ -264,9 +264,9 @@ main() {
         echo -e " "
         create_user_group
         echo -e " "
-        install_app
+        install_spider
         echo -e "Now starting make dxspider configuration"
-        echo -e "Config files location are /spider/local/DXVars.pm"
+        echo -e "Config files location you can find below /spider/local/DXVars.pm"
         config_app
         echo -e " "
         enable_service
