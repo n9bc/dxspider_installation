@@ -12,11 +12,13 @@ Installation Steps
 
     tar xvfz dxspider_installation_script-master.tar.gz
     
-    chmod +x setup_dxspider.sh
+    cd dxspider_installation_script-master/
+    
+    chmod +x install_dxspider.sh
 
 4. Run script and follow the messages.
 
-    ./setup_dxspider.sh
+    ./install_dxspider.sh
 
 Script has been tested on the following Operating Systems (Linux Distributions)
 
