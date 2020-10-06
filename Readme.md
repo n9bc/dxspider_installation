@@ -4,15 +4,15 @@ Installation Steps
 
 1. Download script.
 
-    wget https://gitlab.com/glaukos/dxspider_installation_script/-/archive/master/dxspider_installation_script-master.tar.gz
+    wget https://github.com/glaukos78/dxspider_installation/archive/master.zip -Ο dxspider_script.zip
     
 2. Must be run as root user.
 
 3. Uncompress & change permissions
 
-    tar xvfz dxspider_installation_script-master.tar.gz
+    unzip dxspider_script.zip
     
-    cd dxspider_installation_script-master/
+    cd dxspider_script/
     
     chmod +x install_dxspider.sh
 
