@@ -4,7 +4,7 @@ Installation Steps
 
 1. Download script.
 
-    wget https://github.com/glaukos78/dxspider_installation/archive/master.zip -Ο dxspider_script.zip
+    wget https://github.com/n9bc/dxspider_installation/archive/master.zip -Ο dxspider_script.zip
     
 2. Must be run as root user.
 
