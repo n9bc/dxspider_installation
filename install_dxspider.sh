@@ -46,6 +46,8 @@ check_distro() {
 				install_package_debian
 		    elif [ "${distroname}" == "Debian GNU/Linux 9 (stretch)" ]; then
 				install_package_debian
+	            elif [ "${distroname}" == "Debian GNU/Linux 10 (buster)" ]; then
+				install_package_debian
 		else
             exit 1
         fi
