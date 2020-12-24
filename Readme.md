@@ -27,3 +27,7 @@ Script has been tested on the following Operating Systems (Linux Distributions)
 3. Raspbian 9 (stretch)
 4. Debian GNU/Linux 9 (stretch)
 5. Debian GNU/Linux 10 (buster)
+
+
+To login locally in a new terminal run :
+/spider/perl//console.pl
